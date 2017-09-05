@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Dimensions } from 'react-native';
-import { View, Text, FlatList, TouchableOpacity, Dimensions } from 'react-native';
-import { API, Need, Category, Marker, CreateMarker } from '../API/API'
-import { CalloutView } from './CalloutView'
+import { API, Need, Category, Marker, CreateMarker } from '../API/API';
+import { CalloutView } from './CalloutView';
 import PageControl from 'react-native-page-control';
-let MapView = require('react-native-maps');
+import { strings } from '../localization/Strings';
+import MapView from 'react-native-maps';
 
 interface Props {
 }
@@ -79,8 +79,7 @@ export class MainView extends Component<Props, State> {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}
-                    showsUserLocation={true}
-                >
+                    showsUserLocation={true}>
                     {this.state.needs.filter(marker => { return marker.latitude !== null && marker.longitude !== null }).map(marker => (
                         <MapView.Marker
                             pinColor={marker.markerType === 'need' ? 'red' : 'blue'}
@@ -107,10 +106,10 @@ export class MainView extends Component<Props, State> {
                     </View>
                     <View style={styles.actionButtonContainer}>
                         <TouchableOpacity activeOpacity={0.9} style={[styles.actionButton, styles.actionButtonLeft]}>
-                            <Text style={styles.actionButtonText}>Call</Text>
+                            <Text style={styles.actionButtonText}>{strings.callAction}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity activeOpacity={0.9} style={[styles.actionButton, styles.actionButtonRight]}>
-                            <Text style={styles.actionButtonText}>Text</Text>
+                            <Text style={styles.actionButtonText}>{strings.textAction}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
